@@ -65,9 +65,9 @@ module.exports = function(router, Offer) {
 
 	router.route('/offers/:cidade/:checkIn/:checkOut')
 		.get(function(req, res) {
-
 			Offer
 				.find({
+					//'hotel.city': req.params.cidade,
 					$or: [
 						{
 							startDate: { $lte: new Date(req.params.checkIn) },
@@ -100,13 +100,16 @@ module.exports = function(router, Offer) {
 					if (err)
 						res.send(err);
 
+					var pattern = '^.*?' + req.params.cidade + '.*?$';
+					var re = new RegExp(pattern, 'gi');
 					var result = [];
+
 					offers.forEach(function(entity) {
-						if (entity.hotel.city == req.params.cidade)
+						if (entity.hotel.city.match(re))
 							result.push(entity);
 					});
 
-					/*res.json(offers);*/
+					//res.json(offers);
 					res.json(result);
 				});
 		});
