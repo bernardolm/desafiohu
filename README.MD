@@ -3,10 +3,6 @@ Instalação
 
 cd ./desafiohu
 
-npm cache clean
-npm install -g node-gyp
-npm install -g jasmine-node
-npm install -g bench-rest
 npm install
 
 Iniciando o servidor
@@ -19,14 +15,14 @@ node server.js
 Executando testes
 =================
 
-cd ./desafiohu
+cd ./desafiohu/node_modules/.bin/
 
 jasmine-node tests/
 
 Executante teste de stress
 ==========================
 
-cd ./desafiohu
+cd ./desafiohu/node_modules/.bin/
 
 bench-rest -n 1000 -c 100000 -e "{ head: 'http://localhost:8080/api/offers/Rio de Janeiro/2015-01-01/2015-01-15/' }"
 
