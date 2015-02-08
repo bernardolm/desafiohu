@@ -72,6 +72,9 @@ Hotel.find(function(err, offers) {
 			if (err) console.log(err);
 		});
 
+		hotel1.offers.push(offer1);
+		hotel1.save();
+
 		var offer2 = new Offer();
 		offer2.startDate = new Date('2015-02-01T00:00:00.000Z');
 		offer2.endDate = new Date('2015-02-15T00:00:00.000Z');
@@ -80,6 +83,9 @@ Hotel.find(function(err, offers) {
 			if (err) console.log(err);
 		});
 
+		hotel2.offers.push(offer2);
+		hotel2.save();
+
 		var offer3 = new Offer();
 		offer3.startDate = new Date('2015-03-01T00:00:00.000Z');
 		offer3.endDate = new Date('2015-03-15T00:00:00.000Z');
@@ -87,6 +93,9 @@ Hotel.find(function(err, offers) {
 		offer3.save(function(err) {
 			if (err) console.log(err);
 		});
+
+		hotel3.offers.push(offer3);
+		hotel3.save();
 
 		console.log('Banco populado com dados de teste');
 	}

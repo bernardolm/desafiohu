@@ -67,34 +67,28 @@ module.exports = function(router, Offer) {
 		.get(function(req, res) {
 			Offer
 				.find({
-					//'hotel.city': req.params.cidade,
 					$or: [
 						{
+							startDate: { $gte: new Date(req.params.checkIn) },
+							endDate: { $lte: new Date(req.params.checkOut) }
+						},
+						{
 							startDate: { $lte: new Date(req.params.checkIn) },
 							endDate: { $gte: new Date(req.params.checkOut) }
-						},
-						{
-							startDate: { $lte: new Date(req.params.checkIn) },
-							endDate: { $gte: new Date(req.params.checkIn) },
-							endDate: { $lte: new Date(req.params.checkOut) }
-						},
-						{
-							startDate: { $gte: new Date(req.params.checkIn) },
-							startDate: { $lte: new Date(req.params.checkOut) },
-							endDate: { $gte: new Date(req.params.checkIn) },
-							endDate: { $lte: new Date(req.params.checkOut) }
 						},
 						{
 							startDate: { $gte: new Date(req.params.checkIn) },
 							startDate: { $lte: new Date(req.params.checkOut) },
 							endDate: { $gte: new Date(req.params.checkOut) }
+						},
+						{
+							startDate: { $lt: new Date(req.params.checkIn) },
+							startDate: { $lt: new Date(req.params.checkOut) },
+							endDate: { $lt: new Date(req.params.checkOut) },
+							endDate: { $gte: new Date(req.params.checkIn) }
 						}
 					]
 				})
-				/*.populate({
-					path: 'hotel',
-					match: { city: req.params.cidade }
-				})*/
 				.populate('hotel')
 				.exec(function(err, offers) {
 					if (err)
@@ -109,7 +103,6 @@ module.exports = function(router, Offer) {
 							result.push(entity);
 					});
 
-					//res.json(offers);
 					res.json(result);
 				});
 		});

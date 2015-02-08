@@ -14,7 +14,7 @@ frisby.create('GET offers')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2014-12-05/2014-12-20')
+frisby.create('GET offers 1')
 	.get(URL + '/offers/Rio de Janeiro/2014-12-05/2014-12-20')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -26,7 +26,7 @@ frisby.create('GET offers/Rio de Janeiro/2014-12-05/2014-12-20')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2014-12-25/2015-01-01')
+frisby.create('GET offers 2')
 	.get(URL + '/offers/Rio de Janeiro/2014-12-25/2015-01-01')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -38,7 +38,7 @@ frisby.create('GET offers/Rio de Janeiro/2014-12-25/2015-01-01')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2014-12-20/2015-01-10')
+frisby.create('GET offers 3')
 	.get(URL + '/offers/Rio de Janeiro/2014-12-20/2015-01-10')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -50,7 +50,7 @@ frisby.create('GET offers/Rio de Janeiro/2014-12-20/2015-01-10')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2015-01-01/2015-01-15')
+frisby.create('GET offers 4')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-01/2015-01-15')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -62,7 +62,7 @@ frisby.create('GET offers/Rio de Janeiro/2015-01-01/2015-01-15')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2015-01-05/2015-01-10')
+frisby.create('GET offers 5')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-05/2015-01-10')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -74,7 +74,7 @@ frisby.create('GET offers/Rio de Janeiro/2015-01-05/2015-01-10')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2015-01-05/2015-01-15')
+frisby.create('GET offers 6')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-05/2015-01-15')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -86,7 +86,7 @@ frisby.create('GET offers/Rio de Janeiro/2015-01-05/2015-01-15')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2015-01-10/2015-01-20')
+frisby.create('GET offers 7')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-10/2015-01-20')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -98,8 +98,7 @@ frisby.create('GET offers/Rio de Janeiro/2015-01-10/2015-01-20')
 	})
 .toss();
 
-
-frisby.create('GET offers/Rio de Janeiro/2015-01-15/2015-01-20')
+frisby.create('GET offers 8')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-15/2015-01-20')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -111,19 +110,11 @@ frisby.create('GET offers/Rio de Janeiro/2015-01-15/2015-01-20')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro/2015-01-16/2015-02-20')
+frisby.create('GET offers 9')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-16/2015-02-20')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
 	.afterJSON(function(offers) {
-
-		offers.forEach(function(offer) {
-
-			console.log('\n\n', offer, '\n\n');
-
-			if (offer.hotel)
-				console.log('city: ' + offer.hotel.city);
-		});
 
 		expect(offers).not.toBeUndefined();
 		expect(offers.length).toEqual(0);
@@ -131,7 +122,7 @@ frisby.create('GET offers/Rio de Janeiro/2015-01-16/2015-02-20')
 	})
 .toss();
 
-frisby.create('GET offers/Minas Gerais/2015-01-05/2015-01-10')
+frisby.create('GET offers 10')
 	.get(URL + '/offers/Minas Gerais/2015-01-05/2015-01-10')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -143,16 +134,11 @@ frisby.create('GET offers/Minas Gerais/2015-01-05/2015-01-10')
 	})
 .toss();
 
-frisby.create('GET offers/Rio de Janeiro')
+frisby.create('GET offers 11')
 	.get(URL + '/offers/Rio de Janeiro/2015-01-01/2015-01-15')
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
 	.afterJSON(function(offers) {
-
-		offers.forEach(function(offer) {
-			if (offer.hotel)
-				console.log('city: ' + offer.hotel.city);
-		});
 
 		expect(offers).not.toBeUndefined();
 		expect(offers.length).toEqual(1);
