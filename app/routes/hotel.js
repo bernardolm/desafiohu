@@ -3,10 +3,8 @@ module.exports = function(router, Hotel) {
 	router.route('/hotels')
 		.post(function(req, res) {
 			var hotel = new Hotel();
-			hotel.nome = req.body.nome;
-			hotel.cidade = req.body.cidade;
-			hotel.disponivelDe = req.body.disponivelDe;
-			hotel.disponivelAte = req.body.disponivelAte;
+			hotel.name = req.body.name;
+			hotel.city = req.body.city;
 
 			hotel.save(function(err, newHotel) {
 				if (err)
@@ -38,10 +36,8 @@ module.exports = function(router, Hotel) {
 				if (err)
 					res.send(err);
 
-				hotel.nome = req.body.nome;
-				hotel.cidade = req.body.cidade;
-				hotel.disponivelDe = req.body.disponivelDe;
-				hotel.disponivelAte = req.body.disponivelAte;
+				hotel.name = req.body.name;
+				hotel.city = req.body.city;
 
 				hotel.save(function(err) {
 					if (err)
@@ -57,18 +53,6 @@ module.exports = function(router, Hotel) {
 					res.send(err);
 
 				res.json({ message: 'Hotel excluído com sucesso' });
-			});
-		});
-
-	router.route('/hotels/:cidade')
-		.get(function(req, res) {
-			Hotel.find({
-				cidade: new RegExp(req.params.cidade, 'i')
-			}, function(err, hotels) {
-				if (err)
-					res.send(err);
-
-				res.json(hotels);
 			});
 		});
 }

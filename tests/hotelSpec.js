@@ -2,12 +2,10 @@ var frisby = require('../node_modules/frisby');
 
 var URL = 'http://localhost:8080/api';
 
-frisby.create('POST hotel')
+frisby.create('POST hotels')
 	.post(URL + '/hotels', {
-		disponivelAte: '2015-03-01T00:00:00.000Z',
-		disponivelDe: '2015-01-01T00:00:00.000Z',
-		cidade: 'Cidade TESTE',
-		nome: 'Hotel TESTE'
+		city: 'Cidade TESTE',
+		name: 'Hotel TESTE'
 	}, {json: true})
 	.expectStatus(200)
 	.expectHeaderContains('content-type', 'application/json')
@@ -30,26 +28,22 @@ frisby.create('POST hotel')
 	})
 
 	.afterJSON(function(hotel) {
-		frisby.create('GET hotel/id')
+		frisby.create('GET hotels/id')
 			.get(URL + '/hotels/' + hotel._id)
 			.expectStatus(200)
 			.expectHeaderContains('content-type', 'application/json')
 			.expectJSON({
-				disponivelAte: '2015-03-01T00:00:00.000Z',
-				disponivelDe: '2015-01-01T00:00:00.000Z',
-				cidade: 'Cidade TESTE',
-				nome: 'Hotel TESTE'
+				city: 'Cidade TESTE',
+				name: 'Hotel TESTE'
 			})
 		.toss();
 	})
 
 	.afterJSON(function(hotel) {
-		frisby.create('PUT hotel')
+		frisby.create('PUT hotels')
 			.put(URL + '/hotels/' + hotel._id, {
-				disponivelAte: '2015-03-01T00:00:00.000Z',
-				disponivelDe: '2015-01-01T00:00:00.000Z',
-				cidade: 'Cidade TESTE ALTERADO',
-				nome: 'Hotel TESTE ALTERADO'
+				city: 'Cidade TESTE ALTERADO',
+				name: 'Hotel TESTE ALTERADO'
 			}, {json: true})
 			.expectStatus(200)
 			.expectHeaderContains('content-type', 'application/json')
@@ -57,7 +51,7 @@ frisby.create('POST hotel')
 	})
 
 	.afterJSON(function(hotel) {
-		frisby.create('DELETE hotel')
+		frisby.create('DELETE hotels')
 			.delete(URL + '/hotels/' + hotel._id)
 			.expectStatus(200)
 			.expectHeaderContains('content-type', 'application/json')
@@ -65,7 +59,7 @@ frisby.create('POST hotel')
 	})
 
 	.afterJSON(function(hotel) {
-		frisby.create('GET hotel/id')
+		frisby.create('GET hotels/id')
 			.get(URL + '/hotels/' + hotel._id)
 			.expectStatus(200)
 			.expectHeaderContains('content-type', 'application/json')
