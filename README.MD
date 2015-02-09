@@ -17,9 +17,9 @@ Executando testes
 
 cd ./desafiohu/node_modules/.bin/
 
-jasmine-node tests/
+jasmine-node ../../tests/
 
-Executante teste de stress
+Executado testes de stress
 ==========================
 
 cd ./desafiohu/node_modules/.bin/
